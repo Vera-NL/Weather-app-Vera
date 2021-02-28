@@ -1,0 +1,67 @@
+h1 {
+    color: #0d8eca;
+    padding-left: 15px;
+  }
+  
+  h2 {
+    font-size: 14px;
+    padding-left: 15px;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  img {
+    border-radius: 4px;
+    display: block;
+    margin: 15px auto;
+    margin-top: 20px;
+    width: 220px;
+  }
+  
+  .card {
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .search {
+    padding-bottom: 25px;
+  }
+  
+  .button {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    border-radius: 4px;
+    padding: 5px 40px;
+  }
+  
+  .days {
+    font-weight: bold;
+  }
+  
+  .temperature {
+    color: #0d8eca;
+    font-size: 35px;
+    text-align: center;
+  }
+  
+  .temp-conversion {
+    font-size: 12px;
+  }
+  
+  .humidity {
+    font-size: 12px;
+  }
+  
+  .wind {
+    font-size: 12px;
+  }
+  
+  .forecast-next-hours {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 10px;
+    text-align: center;
+  }

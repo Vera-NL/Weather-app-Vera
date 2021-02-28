@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>+ Week 5 Homework VC</title>
+<link rel="stylesheet" href="styleWeather.css">
+<link rel="stylesheet" href="images/Snowman.jpg">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+        <div class="card-body">
+
+    <form class="search" id="search-form">
+        <div class="row">
+            <div class="col-6">
+                <input type="search" placeholder="City" class="form-control" autofocus="on" id="search-city"/>
+            </div>
+            <div class="col-3">
+                <input type="submit" value="Search" class="form-control" id="submit"/>
+            </div>
+            <div class="col-3">
+                <input type="button" value="Location" class="button" id="locationButton"/>
+            </div>
+    </div>
+    </form>
+
+        <div class="row">
+
+            <div class="col-6">
+               <h1></h1>
+               <h2>Monday 08:39</h2>
+               <h3></h3>
+
+            <p>
+                <ul>
+                   <li class="days">
+                    Monday ☀️
+                   </li>
+                   <li>
+                    4° / -2°  
+                   </li>
+                   <li class="days">
+                    Tuesday 🌦️ 
+                   </li>
+                   <li>
+                    7° / 2° 
+                   </li>
+                   <li class="days">
+                    Wednesday 🌧️ 
+                   </li>
+                   <li>
+                    11° / 5°  
+                   </li>
+                   <li class="days">
+                    Thursday 🌧️ 
+                   </li>
+                   <li>
+                    10° / 3° 
+                   </li>
+               </ul>
+            </p>
+            </div>
+
+            <div class="col-6">
+                <ul class="list-2">
+                <li class="temperature"> <span class id="temperature-actual" type="number">
+                 </span><span class="temp-conversion"><span id="celcius"> °C</span> | <span id="fahrenheit">°F</span></span>         
+                <li class="humidity">Humidity: <span id="humidity">%</span> <span id="percentage">%</span></li>
+                <li class="wind">Wind: <span id="wind">km/h</span><span id="km/h"> km/h</span></li>
+                <li>
+                   <img src="images/Snowman.jpg" alt="snowman"> 
+                </li>
+              </ul>
+            </div> 
+        </div>
+            
+            <ul>
+                <li class="forecast-next-hours">
+                    <div class="row"> 
+                        <div class="col">❄️</div>
+                        <div class="col">❄️</div>
+                        <div class="col">☁️</div>
+                        <div class="col">☀️</div>
+                        <div class="col">☀️</div>
+                    </div>
+                    <div class="row"> 
+                        <div class="col">Now</div>
+                        <div class="col">09</div>
+                        <div class="col">10</div>
+                        <div class="col">11</div>
+                        <div class="col">12</div>
+                    </div>
+                </li>
+            </ul>
+        </div>  
+    
+
+        </div>
+    </div>   
+</div>  
+<script src="appsWeather.js"></script>   
+</body>
+</html>

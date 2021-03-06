@@ -1,0 +1,98 @@
+h1 {
+    color: #0d8eca;
+    padding-left: 15px;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  img {
+    border-radius: 4px;
+    display: block;
+    margin: 15px auto;
+    margin-top: 20px;
+    width: 220px;
+  }
+  
+  .card {
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    margin-top: 20px;
+    padding: 20px;
+  }
+
+  .input-group {
+    border-radius: 20px;
+    padding-bottom: 15px;
+  }
+  
+  #submit-city,
+  #current-location-button {
+    border-color: #0d8eca;
+    color: #0d8eca;
+  }
+
+  #submit-city:hover,
+  #current-location-button:hover {
+    background-color: #ffffff;
+    transition: all 200ms ease-in-out;
+  }
+
+  #date {
+    font-size: 14px;
+    margin-left: -30px;
+    padding-left: 15px;
+  }
+
+  #description {
+    font-size: 14px;
+    margin-left: -30px;
+    padding-left: 15px;
+  }
+
+  .days {
+    font-weight: bold;
+  }
+  
+  #temperature {
+    color: #0d8eca;
+    font-size: 50px;
+    font-weight: 600;
+  }
+
+  .weather-temperature {
+    margin-top: 10px;
+  }
+
+  .weather-temperature .active {
+    color: #0d8eca;
+    cursor: default;
+  }
+  
+  .weather-temperature .units {
+    font-size: 16px;
+    position: relative;
+    top: -25px;
+  }
+  
+  #celcius-link,
+  #fahrenheit-link {
+    color: #000000;
+    text-decoration: none;
+  }
+  
+#humidity-wind {
+  margin-top: 33px;
+}
+
+  .humidity,
+  .wind {
+    font-size: 12px;
+  }
+
+  .forecast-next-hours {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 10px;
+    text-align: center;
+  }

@@ -12,7 +12,7 @@ let days = [
 let day = days[now.getDay()];
 let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
 let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
-h2.innerHTML = `${day} ${hours}:${minutes}`;
+date.innerHTML = `${day} ${hours}:${minutes}`;
 
 //
 
@@ -24,7 +24,7 @@ function search(city) {
 
 function showWeather(response) {
   document.querySelector("h1").innerHTML = response.data.name;
-  document.querySelector("#temperature-actual").innerHTML = Math.round(
+  document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -34,7 +34,6 @@ function showWeather(response) {
 }
 
 function handleSubmit(event) {
-  debugger;
   event.preventDefault();
   let city = document.querySelector("#search-city").value;
   search(city);
@@ -45,7 +44,7 @@ let longitude = position.coords.longitude;
 let latitude = position.coords.latitude;
 let apiKey = "ad1c3c6d8734a6f724e8c027e1f76c71";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-axios.get(apiUr).then(showWeather);
+axios.get(apiUrl).then(showWeather);
 }
 
 function getCurrentPosition(event) {
@@ -56,25 +55,25 @@ function getCurrentPosition(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-let locationButton = document.querySelector("#locationButton");
+let locationButton = document.querySelector("#current-location-button");
 locationButton.addEventListener("click", getCurrentPosition);
 
 search("Amsterdam");
 
 //function fahrenheit(event) {
 //event.preventDefault();
-//let fahrenheitConvert = document.querySelector("#temperature-actual");
+//let fahrenheitConvert = document.querySelector("#temperature");
 //fahrenheitConvert.innerHTML = (19*9)/5+32;
 //}
 
-//let fahrenheitTemp = document.querySelector("#fahrenheit");
+//let fahrenheitTemp = document.querySelector("#fahrenheit-link");
 //fahrenheitTemp.addEventListener("click", fahrenheit);
 
 //function celsius(event) {
 //event.preventDefault();
-//let celciusConvert = document.querySelector("#temperature-actual");
+//let celciusConvert = document.querySelector("#temperature");
 //celciusConvert.innerHTML = 19;
 //}
 
-//let celsiusTemp = document.querySelector("#celsius");
+//let celsiusTemp = document.querySelector("#celsius-link");
 //celsiusTemp.addEventListener("click", celsius);

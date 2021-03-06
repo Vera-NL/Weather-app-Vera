@@ -4,82 +4,120 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>+ Week 5 Homework VC</title>
-<link rel="stylesheet" href="styleWeather.css">
+    <title>Weather App ☀️ Vera Claassens </title>
 <link rel="stylesheet" href="images/Snowman.jpg">
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap"
+  rel="stylesheet"/>
+<script src="https://kit.fontawesome.com/412cea9219.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="src/style.css">
 </head>
 <body>
   <div class="container">
-    <div class="card">
-        <div class="card-body">
+    <div class="app shadow-lg">
+        <div class="card">
+            <div class="card-body">
+        
+              <form class="search" id="search-form">
+                <div class="input-group">
+                    <input 
+                    class="form-control" 
+                    type="search" 
+                    placeholder="Search a city..." 
+                    aria-label="Recipient's city with two button addons" 
+                    autocomplete="off" 
+                    autofocus="off" 
+                    id="search-city">
+                    <button 
+                    class="btn btn-outline-secondary" 
+                    type="submit" 
+                    value="search" 
+                    autofocus="off" 
+                    id="submit-city"><i class="fas fa-search-location"></i>
+                    </button>
+                    <button 
+                    class="btn btn-outline-secondary" 
+                    type="button" 
+                    value="Location"  
+                    autofocus="off" 
+                    id="current-location-button"><i class="fas fa-map-marker-alt"></i>
+                    </button>
+                </div>
+              </form>  
 
-    <form class="search" id="search-form">
         <div class="row">
-            <div class="col-6">
-                <input type="search" placeholder="City" class="form-control" autofocus="on" id="search-city"/>
-            </div>
-            <div class="col-3">
-                <input type="submit" value="Search" class="form-control" id="submit"/>
-            </div>
-            <div class="col-3">
-                <input type="button" value="Location" class="button" id="locationButton"/>
-            </div>
-    </div>
-    </form>
-
-        <div class="row">
 
             <div class="col-6">
-               <h1></h1>
-               <h2>Monday 08:38</h2>
-               <h3></h3>
-
-            <p>
+               <h1 id="city">Maastricht</h1>
                 <ul>
-                   <li class="days">
-                    Monday ☀️
-                   </li>
-                   <li>
-                    4° / -2°  
-                   </li>
-                   <li class="days">
-                    Tuesday 🌦️ 
-                   </li>
-                   <li>
-                    7° / 2° 
-                   </li>
-                   <li class="days">
-                    Wednesday 🌧️ 
-                   </li>
-                   <li>
-                    11° / 5°  
-                   </li>
-                   <li class="days">
-                    Thursday 🌧️ 
-                   </li>
-                   <li>
-                    10° / 3° 
-                   </li>
-               </ul>
-            </p>
+                    <li><span id="date"></span></li>
+                    <li id="description">Sunny</li>
+                </ul>
             </div>
 
-            <div class="col-6">
-                <ul class="list-2">
-                <li class="temperature"> <span class id="temperature-actual" type="number">
-                 </span><span class="temp-conversion"><span id="celcius"> °C</span> | <span id="fahrenheit">°F</span></span>         
-                <li class="humidity">Humidity: <span id="humidity">%</span> <span id="percentage">%</span></li>
-                <li class="wind">Wind: <span id="wind">km/h</span><span id="km/h"> km/h</span></li>
-                <li>
-                   <img src="images/Snowman.jpg" alt="snowman"> 
-                </li>
-              </ul>
+            <div class="col-2">
+                <div class="clearfix weather-temperature">
+                    <div class="float-left">
+                        <span id="temperature"></span>
+                        <span 
+                        class="units" 
+                        id="units">
+                            <a href="#" 
+                            id="celcius-link" 
+                            class="active"> 
+                            </a> °C | 
+                            <a href="#" 
+                            id="fahrenheit-link"> °F
+                            </a>
+                        </span>
+                    </div>
+                </div>
             </div> 
+            
+            <div class="col-4">
+                <ul id="humidity-wind">
+                    <li class="humidity">Humidity: <span id="humidity">%</span> <span id="percentage">%</span></li>
+                    <li class="wind">Wind: <span id="wind">km/h</span><span id="km/h"> km/h</span></li>
+                </ul>    
+            </div>
         </div>
             
+
+        <ul>
+            <li class="days">
+             Monday ☀️
+            </li>
+            <li>
+             4° / -2°  
+            </li>
+            <li class="days">
+             Tuesday 🌦️ 
+            </li>
+            <li>
+             7° / 2° 
+            </li>
+            <li class="days">
+             Wednesday 🌧️ 
+            </li>
+            <li>
+             11° / 5°  
+            </li>
+            <li class="days">
+             Thursday 🌧️ 
+            </li>
+            <li>
+             10° / 3° 
+            </li>
+        </ul>
+
+        <li>
+            <img src="images/Snowman.jpg" class="img-fluid" alt="snowman"> 
+         </li>
+
+
             <ul>
                 <li class="forecast-next-hours">
                     <div class="row"> 
@@ -99,11 +137,10 @@
                 </li>
             </ul>
         </div>  
-    
-        <small> <a href="https://github.com/Vera-NL/Weather-app-Vera">Open-source code</a> by Vera Claassens</small>
         </div>
+        <small> <a href="https://github.com/Vera-NL/Weather-app-Vera" target="blank">Open-source code</a> by Vera Claassens</small>
     </div>   
 </div>  
-<script src="appsWeather.js"></script>   
+<script src="src/app.js"></script>   
 </body>
 </html>

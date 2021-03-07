@@ -1,19 +1,39 @@
-let now = new Date();
-let h2 = document.querySelector("h2");
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-let day = days[now.getDay()];
-let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
-let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
-date.innerHTML = `${day} ${hours}:${minutes}`;
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  let day = days [date.getDay()];
+  return `${day} ${formatHours(timestamp)}`;
+  }
+  
+  function formatHours (timestamp) {
+      let date = new Date(timestamp);
+      let hours = (date.getHours()<10? `0` : ``) + date.getHours();
+      let minutes = (date.getMinutes()<10? `0` : ``) + date.getMinutes();
+      return `${hours}:${minutes}`;
+  }
 
+
+  let now = new Date();
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[now.getDay()];
+  let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
+  let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+  let date = now.getDate();
+  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  let month = months[now.getMonth()];
+  let year = now.getFullYear();
+  
+  date.innerHTML = `${day} ${hours}:${minutes}`;
+  month.innerHTML =`${date} ${month}, ${year}`;
 //
 
 function search(city) {
@@ -23,10 +43,12 @@ function search(city) {
 }
 
 function showWeather(response) {
+  console.log(response);
   document.querySelector("h1").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp
   );
+  document.querySelector("#descripton").innerHTML = response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed

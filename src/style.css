@@ -38,55 +38,54 @@ h1 {
     transition: all 200ms ease-in-out;
   }
 
-  #date {
-    font-size: 14px;
+#date-update,
+#month {
+font-size: 12px;
     margin-left: -30px;
     padding-left: 15px;
-  }
-
-  #description {
-    font-size: 14px;
-    margin-left: -30px;
-    padding-left: 15px;
-  }
+} 
 
   .days {
     font-weight: bold;
   }
   
+  .weather-temperature {
+    position: relative;
+    top: -5px;
+  }
+
+  .weather-temperature .units {
+    margin-right: 20px;
+    position: relative;
+    top: -35px;
+  }
+
   #temperature {
     color: #0d8eca;
-    font-size: 50px;
+    font-size: 80px;
     font-weight: 600;
-  }
-
-  .weather-temperature {
-    margin-top: 10px;
-  }
-
-  .weather-temperature .active {
-    color: #0d8eca;
-    cursor: default;
-  }
-  
-  .weather-temperature .units {
-    font-size: 16px;
-    position: relative;
-    top: -25px;
   }
   
   #celcius-link,
   #fahrenheit-link {
-    color: #000000;
-    text-decoration: none;
+    border-color: #0d8eca;
+    color: #0d8eca;
+    top: -30px;
   }
   
-#humidity-wind {
-  margin-top: 33px;
+  #celcius-link:hover,
+  #fahrenheit-link:hover {
+    background-color: #ffffff;
+    transition: all 200ms ease-in-out;
+  }
+
+#weather-description {
+  margin-top: 60px;
 }
 
   .humidity,
-  .wind {
+  .wind,
+  .description {
     font-size: 12px;
   }
 

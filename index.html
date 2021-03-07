@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container-fluid">
     <div class="app shadow-lg">
         <div class="card">
             <div class="card-body">
@@ -48,75 +48,85 @@
                 </div>
               </form>  
 
-        <div class="row">
+        <div class="row first">
 
-            <div class="col-6">
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                <h1 id="city">Maastricht</h1>
                 <ul>
-                    <li><span id="date"></span></li>
-                    <li id="description">Sunny</li>
+                    <li id="date-update">Last updated on <span id="date">Sunday 16:13</span></li>
+                    <li><span id="month"> 07 March 2021</span></li>
                 </ul>
             </div>
 
-            <div class="col-2">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                 <div class="clearfix weather-temperature">
                     <div class="float-left">
                         <span id="temperature"></span>
                         <span 
                         class="units" 
                         id="units">
-                            <a href="#" 
-                            id="celcius-link" 
-                            class="active"> 
-                            </a> °C | 
-                            <a href="#" 
-                            id="fahrenheit-link"> °F
+                            <a 
+                             class="btn btn-outline-secondary" 
+                            href="#" 
+                            role="button" 
+                            id="celcius-link">°C
+                            </a>
+                            <a 
+                            class="btn btn-outline-secondary" 
+                            href="#" 
+                            role="button" 
+                            id="fahrenheit-link">°F
                             </a>
                         </span>
-                    </div>
-                </div>
+                    </div> 
+                </div>   
             </div> 
             
-            <div class="col-4">
-                <ul id="humidity-wind">
-                    <li class="humidity">Humidity: <span id="humidity">%</span> <span id="percentage">%</span></li>
-                    <li class="wind">Wind: <span id="wind">km/h</span><span id="km/h"> km/h</span></li>
-                </ul>    
-            </div>
         </div>
             
+        <div class="row second">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> 
+                <ul>
+                    <li class="days">
+                    Monday ☀️
+                    </li>
+                    <li>
+                    4° / -2°  
+                    </li>
+                    <li class="days">
+                    Tuesday 🌦️ 
+                    </li>
+                    <li>
+                    7° / 2° 
+                    </li>
+                    <li class="days">
+                    Wednesday 🌧️ 
+                    </li>
+                    <li>
+                    11° / 5°  
+                    </li>
+                    <li class="days">
+                    Thursday 🌧️ 
+                    </li>
+                    <li>
+                    10° / 3° 
+                    </li>
+                </ul>
+            </div>
 
-        <ul>
-            <li class="days">
-             Monday ☀️
-            </li>
-            <li>
-             4° / -2°  
-            </li>
-            <li class="days">
-             Tuesday 🌦️ 
-            </li>
-            <li>
-             7° / 2° 
-            </li>
-            <li class="days">
-             Wednesday 🌧️ 
-            </li>
-            <li>
-             11° / 5°  
-            </li>
-            <li class="days">
-             Thursday 🌧️ 
-            </li>
-            <li>
-             10° / 3° 
-            </li>
-        </ul>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"> 
+                <img src="images/Snowman.jpg" class="img-fluid" alt="snowman" id="icon"> 
+            </div>
 
-        <li>
-            <img src="images/Snowman.jpg" class="img-fluid" alt="snowman"> 
-         </li>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <ul id="weather-description">
+                    <li class="humidity"><strong>Humidity: </strong><span id="humidity"></span>12<span id="percentage">%</span></li>
+                    <li class="wind"><strong>Wind: </strong><span id="wind">5</span><span id="km/h"> km/h</span></li>
+                    <li class="description" id="description"><strong>Sunny</strong></li>
+                </ul>    
+            </div>
 
+        </div>
 
             <ul>
                 <li class="forecast-next-hours">
@@ -126,6 +136,7 @@
                         <div class="col">☁️</div>
                         <div class="col">☀️</div>
                         <div class="col">☀️</div>
+                        <div class="col">☁️</div>
                     </div>
                     <div class="row"> 
                         <div class="col">Now</div>
@@ -133,13 +144,14 @@
                         <div class="col">10</div>
                         <div class="col">11</div>
                         <div class="col">12</div>
+                        <div class="col">13</div>
                     </div>
                 </li>
             </ul>
         </div>  
         </div>
-        <small> <a href="https://github.com/Vera-NL/Weather-app-Vera" target="blank">Open-source code</a> by Vera Claassens</small>
-    </div>   
+    </div>  
+    <small> <a href="https://github.com/Vera-NL/Weather-app-Vera" target="blank">Open-source code</a> by Vera Claassens</small> 
 </div>  
 <script src="src/app.js"></script>   
 </body>

@@ -1,20 +1,4 @@
-function formatDate(timestamp) {
-  let date = new Date(timestamp);
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  let day = days [date.getDay()];
-  return `${day} ${formatHours(timestamp)}`;
-  }
-  
-  function formatHours (timestamp) {
-      let date = new Date(timestamp);
-      let hours = (date.getHours()<10? `0` : ``) + date.getHours();
-      let minutes = (date.getMinutes()<10? `0` : ``) + date.getMinutes();
-      return `${hours}:${minutes}`;
-  }
-
-
   let now = new Date();
-
   let days = [
     "Sunday",
     "Monday",
@@ -28,12 +12,14 @@ function formatDate(timestamp) {
   let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
   let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
   let date = now.getDate();
-  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  let months = ["January", "February", "March", "April", "May", "June", "July", "Augustus", "September", "October", "November", "December"]
   let month = months[now.getMonth()];
   let year = now.getFullYear();
   
-  date.innerHTML = `${day} ${hours}:${minutes}`;
-  month.innerHTML =`${date} ${month}, ${year}`;
+  let today = document.querySelector("#today");
+  let monthYear = document.querySelector("#month-year");
+  today.innerHTML = `${day} ${hours}:${minutes} `;
+  monthYear.innerHTML = `${date} ${month} ${year}`;
 //
 
 function search(city) {
@@ -44,15 +30,12 @@ function search(city) {
 
 function showWeather(response) {
   console.log(response);
-  document.querySelector("h1").innerHTML = response.data.name;
-  document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  celsius = response.data.main.temp;
+  document.querySelector("#temperature").innerHTML= Math.round(celsius); 
+  document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#descripton").innerHTML = response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
 }
 
 function handleSubmit(event) {
@@ -82,20 +65,21 @@ locationButton.addEventListener("click", getCurrentPosition);
 
 search("Amsterdam");
 
-//function fahrenheit(event) {
-//event.preventDefault();
-//let fahrenheitConvert = document.querySelector("#temperature");
-//fahrenheitConvert.innerHTML = (19*9)/5+32;
-//}
+//
 
-//let fahrenheitTemp = document.querySelector("#fahrenheit-link");
-//fahrenheitTemp.addEventListener("click", fahrenheit);
+function fahrenheitConvert(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#temperature").innerHTML;
+  document.querySelector("#temperature").innerHTML = Math.round((temperature * 9) / 5 + 32);
+}
 
-//function celsius(event) {
-//event.preventDefault();
-//let celciusConvert = document.querySelector("#temperature");
-//celciusConvert.innerHTML = 19;
-//}
+function celsiusConvert(event) {
+  event.preventDefault();
+  document.querySelector("#temperature").innerHTML = Math.round(celsius);
+  }
 
-//let celsiusTemp = document.querySelector("#celsius-link");
-//celsiusTemp.addEventListener("click", celsius);
+let celsius = null;
+
+document.querySelector("#fahrenheit-link").addEventListener("click", fahrenheitConvert);
+
+document.querySelector("#celsius-link").addEventListener("click", celsiusConvert);

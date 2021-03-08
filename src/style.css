@@ -1,6 +1,5 @@
-h1 {
+  h1 {
     color: #0d8eca;
-    padding-left: 15px;
   }
   
   ul {
@@ -11,12 +10,12 @@ h1 {
     border-radius: 4px;
     display: block;
     margin: 15px auto;
-    margin-top: 20px;
     width: 220px;
   }
   
   .card {
     background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
     padding: 20px;
   }
@@ -26,6 +25,10 @@ h1 {
     padding-bottom: 15px;
   }
   
+  #search-city {
+    background-color: #fff1eb;
+}
+
   #submit-city,
   #current-location-button {
     border-color: #0d8eca;
@@ -34,30 +37,25 @@ h1 {
 
   #submit-city:hover,
   #current-location-button:hover {
-    background-color: #ffffff;
+    background-color: #fff1eb;
     transition: all 200ms ease-in-out;
   }
 
-#date-update,
-#month {
-font-size: 12px;
+  #date-update,
+  #month-year {
+    font-size: 12px;
     margin-left: -30px;
-    padding-left: 15px;
 } 
-
-  .days {
-    font-weight: bold;
-  }
   
   .weather-temperature {
     position: relative;
-    top: -5px;
+    top: -20px;
   }
 
   .weather-temperature .units {
     margin-right: 20px;
     position: relative;
-    top: -35px;
+    top: -34px;
   }
 
   #temperature {
@@ -66,21 +64,35 @@ font-size: 12px;
     font-weight: 600;
   }
   
-  #celcius-link,
+  #celsius-link,
   #fahrenheit-link {
     border-color: #0d8eca;
     color: #0d8eca;
-    top: -30px;
+    top: -36px;
   }
   
-  #celcius-link:hover,
+  #celsius-link:hover,
   #fahrenheit-link:hover {
-    background-color: #ffffff;
+    background-color: #fff1eb;
     transition: all 200ms ease-in-out;
   }
 
+  #celsius-link:active,
+  #fahrenheit-link:active {
+    background-color: #fff1eb;
+    color: #0d8eca;
+  }
+
 #weather-description {
-  margin-top: 60px;
+  margin-top: 65px;
+}
+
+.second-row {
+  margin-top: -10px;
+}
+
+.forecast-days {
+  font-size: 14px;
 }
 
   .humidity,

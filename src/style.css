@@ -102,6 +102,9 @@
 
   .description {
     font-weight: 600;
+  }
+
+  .description::first-letter {
     text-transform: capitalize;
   }
 

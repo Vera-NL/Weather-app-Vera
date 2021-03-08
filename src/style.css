@@ -80,7 +80,6 @@
   #celsius-link:active,
   #fahrenheit-link:active {
     background-color: #fff1eb;
-    color: #0d8eca;
   }
 
 #weather-description {
@@ -99,6 +98,11 @@
   .wind,
   .description {
     font-size: 12px;
+  }
+
+  .description {
+    font-weight: 600;
+    text-transform: capitalize;
   }
 
   .forecast-next-hours {

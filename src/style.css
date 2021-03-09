@@ -6,13 +6,6 @@
     list-style: none;
   }
   
-  img {
-    border-radius: 4px;
-    display: block;
-    margin: 15px auto;
-    width: 220px;
-  }
-  
   .card {
     background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
     font-family: Arial, Helvetica, sans-serif;
@@ -58,6 +51,10 @@
     top: -34px;
   }
 
+  .weather-temperature .active {
+    background-color: #fff1eb;
+  }
+
   #temperature {
     color: #0d8eca;
     font-size: 80px;
@@ -77,13 +74,8 @@
     transition: all 200ms ease-in-out;
   }
 
-  #celsius-link:active,
-  #fahrenheit-link:active {
-    background-color: #fff1eb;
-  }
-
 #weather-description {
-  margin-top: 65px;
+  margin-top: 60px;
 }
 
 .second-row {
@@ -92,6 +84,11 @@
 
 .forecast-days {
   font-size: 14px;
+}
+
+#current-weather-icon {
+  margin-top: 25px;
+  text-align: center;
 }
 
   .humidity,

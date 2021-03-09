@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App ☀️ Vera Claassens </title>
-<link rel="stylesheet" href="images/Snowman.jpg">
 <link rel="preconnect" href="https://fonts.gstatic.com" />
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap"
   rel="stylesheet"/>
@@ -17,33 +16,35 @@
 </head>
 <body>
   <div class="container-fluid">
-    <div class="app shadow-lg">
+    <div class="app shadow-lg" id="app">
         <div class="card">
             <div class="card-body">
         
               <form class="search" id="search-form">
                 <div class="input-group">
                     <input 
-                    class="form-control" 
-                    type="search" 
-                    placeholder="Search a city..." 
-                    aria-label="Recipient's city with two button addons" 
-                    autocomplete="off" 
-                    autofocus="off" 
-                    id="search-city">
+                        class="form-control" 
+                        type="search" 
+                        placeholder="Search a city..." 
+                        aria-label="Recipient's city with two button addons" 
+                        autocomplete="off" 
+                        autofocus="off" 
+                        id="search-city">
                     <button 
-                    class="btn btn-outline-secondary" 
-                    type="submit" 
-                    value="search" 
-                    autofocus="off" 
-                    id="submit-city"><i class="fas fa-search-location"></i>
+                        class="btn btn-outline-secondary" 
+                        type="submit" 
+                        value="search" 
+                        autofocus="off" 
+                        id="submit-city">
+                    <i class="fas fa-search-location"></i>
                     </button>
                     <button 
-                    class="btn btn-outline-secondary" 
-                    type="button" 
-                    value="Location"  
-                    autofocus="off" 
-                    id="current-location-button"><i class="fas fa-map-marker-alt"></i>
+                        class="btn btn-outline-secondary" 
+                        type="button" 
+                        value="Location"  
+                        autofocus="off" 
+                        id="current-location-button">
+                    <i class="fas fa-map-marker-alt"></i>
                     </button>
                 </div>
               </form>  
@@ -66,18 +67,16 @@
                         class="units" 
                         id="units">
                             <a 
-                             class="btn btn-outline-secondary" 
-                            href="#"  
-                            onclick="celsiusConvert()"
-                            id="celsius-link"
-                            role="button">°C
+                                class="btn btn-outline-secondary active" 
+                                href="#"
+                                id="celsius-link"
+                                role="button">°C
                             </a>
                             <a 
-                            class="btn btn-outline-secondary" 
-                            href="#" 
-                            onclick="fahrenheitConvert()"
-                            id="fahrenheit-link"
-                            role="button">°F
+                                class="btn btn-outline-secondary" 
+                                href="#" 
+                                id="fahrenheit-link"
+                                role="button">°F
                             </a>
                         </span>
                     </div> 
@@ -116,11 +115,11 @@
                 </ul>
             </div>
 
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"> 
-                <img src="images/Snowman.jpg" class="img-fluid" alt="snowman" id="icon"> 
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> 
+                <div id="current-weather-icon"></div> 
             </div>
 
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <ul id="weather-description">
                     <li class="humidity"><strong>Humidity: </strong><span id="humidity">12</span><span id="percentage"> %</span></li>
                     <li class="wind"><strong>Wind: </strong><span id="wind">5</span><span id="km/h"> km/h</span></li>

@@ -6,8 +6,9 @@
     list-style: none;
   }
   
-  .card {
+  .app {
     background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+    border-radius: 4px;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
     padding: 20px;
@@ -75,19 +76,28 @@
   }
 
 #weather-description {
-  margin-top: 60px;
+  margin-top: 70px;
 }
 
 .second-row {
-  margin-top: -10px;
+  margin-top: -20px;
 }
 
 .forecast-days {
-  font-size: 14px;
+  font-size: 12px;
+}
+
+.days {
+  font-weight: bold;
+}
+
+.forecast-days img {
+  height: 23px;
+  font-weight: 23px;
 }
 
 #current-weather-icon {
-  margin-top: 25px;
+  margin-top: 40px;
   text-align: center;
 }
 
@@ -105,9 +115,38 @@
     text-transform: capitalize;
   }
 
-  .forecast-next-hours {
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 10px;
+  #forecast-hours {
     text-align: center;
+  }
+  
+  #forecast-hours h3 {
+    font-size: 14px;
+    font-weight: bold;
+    height: 15px;
+    line-height: 15px;
+    padding-top: 7px;
+  }
+  
+  #forecast-hours img {
+    display: block;
+    height: 40px;
+    margin: 0 auto;
+    width: 40px;
+  }
+  
+  .forecast-temperature {
+    font-size: 12px;
+    font-weight: normal;
+    height: auto;
+    line-height: 15px;
+    white-space: nowrap;
+  }
+  .max-temp-hours,
+  .max-temp-days {
+    color: #0d8eca;
+  }
+
+  #open-source-code {
+    color: #0d8eca;
+    text-decoration: none;
   }

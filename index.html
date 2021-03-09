@@ -15,44 +15,42 @@
 <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="app shadow-lg" id="app">
-        <div class="card">
-            <div class="card-body">
+<div class="container-fluid">
+<div class="app shadow-lg" id="app">
         
-              <form class="search" id="search-form">
-                <div class="input-group">
-                    <input 
-                        class="form-control" 
-                        type="search" 
-                        placeholder="Search a city..." 
-                        aria-label="Recipient's city with two button addons" 
-                        autocomplete="off" 
-                        autofocus="off" 
-                        id="search-city">
-                    <button 
-                        class="btn btn-outline-secondary" 
-                        type="submit" 
-                        value="search" 
-                        autofocus="off" 
-                        id="submit-city">
-                    <i class="fas fa-search-location"></i>
-                    </button>
-                    <button 
-                        class="btn btn-outline-secondary" 
-                        type="button" 
-                        value="Location"  
-                        autofocus="off" 
-                        id="current-location-button">
-                    <i class="fas fa-map-marker-alt"></i>
-                    </button>
-                </div>
-              </form>  
+    <form class="search" id="search-form">
+        <div class="input-group">
+            <input 
+                class="form-control" 
+                type="search" 
+                placeholder="Search a city..." 
+                aria-label="Recipient's city with two button addons" 
+                autocomplete="off" 
+                autofocus="off" 
+                id="search-city">
+            <button 
+                class="btn btn-outline-secondary" 
+                type="submit" 
+                value="search" 
+                autofocus="off" 
+                id="submit-city">
+            <i class="fas fa-search-location"></i>
+            </button>
+            <button 
+                class="btn btn-outline-secondary" 
+                type="button" 
+                value="Location"  
+                autofocus="off" 
+                id="current-location-button">
+            <i class="fas fa-map-marker-alt"></i>
+            </button>
+        </div>
+    </form>  
 
         <div class="row first-row">
-
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-               <h1 id="city">Maastricht</h1>
+               <h1 id="city">Maastricht
+               </h1>
                 <ul>
                     <li id="date-update">Last updated on <span id="today">Sunday 16:13</span></li>
                     <li id="month-year"></li>
@@ -62,7 +60,8 @@
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                 <div class="clearfix weather-temperature">
                     <div class="float-left">
-                        <span id="temperature"></span>
+                        <span id="temperature">
+                        </span>
                         <span 
                         class="units" 
                         id="units">
@@ -81,36 +80,51 @@
                         </span>
                     </div> 
                 </div>   
-            </div> 
-            
+            </div>     
         </div>
             
         <div class="row second-row">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> 
                 <ul class="forecast-days">
                     <li class="days">
-                    Monday ☀️
+                        Monday <img 
+                        src="https://ssl.gstatic.com/onebox/weather/48/sunny.png" 
+                        alt=""/>
                     </li>
                     <li>
-                    4° / -2°  
+                        <strong class="max-temp-days">4°</strong> / -2°  
                     </li>
                     <li class="days">
-                    Tuesday 🌦️ 
+                        Tuesday <img 
+                        src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                        alt=""/> 
                     </li>
                     <li>
-                    7° / 2° 
+                        <strong class="max-temp-days">4°</strong> / 2° 
                     </li>
                     <li class="days">
-                    Wednesday 🌧️ 
+                        Wednesday <img 
+                        src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                        alt=""/> 
                     </li>
                     <li>
-                    11° / 5°  
+                        <strong class="max-temp-days">4°</strong> / 5°  
                     </li>
                     <li class="days">
-                    Thursday 🌧️ 
+                        Thursday <img 
+                        src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                        alt=""/> 
                     </li>
                     <li>
-                    10° / 3° 
+                        <strong class="max-temp-days">4°</strong> / 3° 
+                    </li>
+                    <li class="days">
+                        Friday <img 
+                        src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                        alt=""/>
+                    </li>
+                    <li>
+                        <strong class="max-temp-days">4°</strong> / 3° 
                     </li>
                 </ul>
             </div>
@@ -125,35 +139,98 @@
                     <li class="wind"><strong>Wind: </strong><span id="wind">5</span><span id="km/h"> km/h</span></li>
                     <li class="description" id="description"></li>
                 </ul>    
+            </div>    
+        </div>
+
+        <div class="row third-row" id="forecast-hours">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h3>
+                    09
+                </h3>
+                <img 
+                    src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                    alt=""
+                />
+                <div class="forecast-temperature">
+                    <strong class="max-temp-hours">22°</strong> / 17°
+                </div>
             </div>
 
-        </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h3>
+                    12
+                </h3>
+                <img 
+                    src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                    alt=""
+                />
+                <div class="forecast-temperature">
+                    <strong class="max-temp-hours">22°</strong> / 17°
+                </div>
+            </div>
 
-            <ul>
-                <li class="forecast-next-hours">
-                    <div class="row"> 
-                        <div class="col">❄️</div>
-                        <div class="col">❄️</div>
-                        <div class="col">☁️</div>
-                        <div class="col">☀️</div>
-                        <div class="col">☀️</div>
-                        <div class="col">☁️</div>
-                    </div>
-                    <div class="row"> 
-                        <div class="col">Now</div>
-                        <div class="col">09</div>
-                        <div class="col">10</div>
-                        <div class="col">11</div>
-                        <div class="col">12</div>
-                        <div class="col">13</div>
-                    </div>
-                </li>
-            </ul>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h3>
+                    15
+                </h3>
+                <img 
+                    src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                    alt=""
+                />
+                <div class="forecast-temperature">
+                    <strong class="max-temp-hours">22°</strong> / 17°
+                </div>
+            </div>
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h3>
+                    18
+                </h3>
+                <img 
+                    src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png"  
+                    alt=""
+                />
+                <div class="forecast-temperature">
+                    <strong class="max-temp-hours">22°</strong> / 17°
+                </div>
+            </div>
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h3>
+                    21
+                </h3>
+                <img 
+                    src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png"  
+                    alt=""
+                />
+                <div class="forecast-temperature">
+                    <strong class="max-temp-hours">22°</strong> / 17°
+                </div>
+            </div>
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h3>
+                    00
+                </h3>
+                <img 
+                    src="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png" 
+                    alt=""
+                />
+                <div class="forecast-temperature">
+                    <strong class="max-temp-hours">22°</strong> / 17°
+                </div>
+            </div>
         </div>  
-        </div>
-    </div>  
-    <small> <a href="https://github.com/Vera-NL/Weather-app-Vera" target="blank">Open-source code</a> by Vera Claassens</small> 
-</div>  
+  
+</div>
+<small> <a 
+    href="https://github.com/Vera-NL/Weather-app-Vera" 
+    target="blank" 
+    id="open-source-code">Open-source code
+</a> by Vera Claassens
+</small>
+</div> 
+  
 <script src="src/app.js"></script>   
 </body>
 </html>

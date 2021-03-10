@@ -20,6 +20,7 @@
   }
   
   #search-city {
+    border-color: #0d8eca;
     background-color: #fff1eb;
 }
 
@@ -83,7 +84,7 @@
   margin-top: -20px;
 }
 
-.forecast-days {
+#forecast-days {
   font-size: 12px;
 }
 
@@ -91,7 +92,7 @@
   font-weight: bold;
 }
 
-.forecast-days img {
+#forecast-days img {
   height: 23px;
   font-weight: 23px;
 }

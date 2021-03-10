@@ -17,14 +17,14 @@ function formatDays (timestamp) {
   return `${day}`;
 }
   
-  //let now = new Date();
-  //let date = now.getDate();
-  //let months = ["January", "February", "March", "April", "May", "June", "July", "Augustus", "September", "October", "November", "December"]
-  //let month = months[now.getMonth()];
-  //let year = now.getFullYear();
+  let now = new Date();
+  let date = now.getDate();
+  let months = ["January", "February", "March", "April", "May", "June", "July", "Augustus", "September", "October", "November", "December"]
+  let month = months[now.getMonth()];
+  let year = now.getFullYear();
 
-  //let monthYear = document.querySelector("#month-year");
-  //monthYear.innerHTML = `${date} ${month} ${year}`;
+  let monthYear = document.querySelector("#month-year");
+  monthYear.innerHTML = `${date} ${month} ${year}`;
   
 //
 

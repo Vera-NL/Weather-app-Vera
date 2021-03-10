@@ -103,26 +103,25 @@ function showForecastHours(response) {
 }
 }
 
-
 function showForecastDays(response) {
   console.log(response);
   document.querySelector("#forecast-days").innerHTML = null;
   let forecast = null;
 
   for (let index = 0; index < 5; index++) {
-    forecast = //response.data.daily[index];
+    forecast = response.data.daily[index];
     document.querySelector("#forecast-days").innerHTML += 
   `<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <ul>
       <li class="days">
-       ${formatDays(forecast.//dt * 1000)} <img 
-        src="https://openweathermap.org/img/wn/${//forecast.weather[0].id}@2x.png"/>
+       ${formatDays(forecast.dt * 1000)} <img 
+        src="https://openweathermap.org/img/wn/${forecast.weather[0].id}@2x.png"/>
       </li>
       <li>
         <strong class="max-temp-days">
-          ${Math.round(//forecast.temp.max)}°
+          ${Math.round(forecast.temp.max)}°
         </strong> 
-          / ${Math.round(//forecast.temp.min)}°  
+          / ${Math.round(forecast.temp.min)}°  
       </li>
     </ul>
   </div>`

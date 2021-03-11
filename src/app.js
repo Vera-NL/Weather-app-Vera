@@ -1,6 +1,5 @@
 function formatDate(timestamp) {
-  let today = document.querySelector("#today");
-  today.innerHTML = `${formatDays(timestamp)} ${formatHours(timestamp)}`;
+  document.querySelector("#today").innerHTML = `${formatDays(timestamp)} ${formatHours(timestamp)}`;
   }
   
 function formatHours (timestamp) {
@@ -23,8 +22,7 @@ function formatDays (timestamp) {
   let month = months[now.getMonth()];
   let year = now.getFullYear();
 
-  let monthYear = document.querySelector("#month-year");
-  monthYear.innerHTML = `${date} ${month} ${year}`;
+  document.querySelector("#month-year").innerHTML = `${date} ${month} ${year}`;
   
 //
 
@@ -70,13 +68,50 @@ function showWeather(response) {
     // clear
     document.querySelector("#current-weather-icon").innerHTML = `<i class="fas fa-sun fa-7x"></i>`;
     document.querySelector("#current-weather-icon").style.color = "#0d8eca";
-    document.querySelector("#app").style.backgroundImage = "linear-gradient(to top, #e2f4fa 0%, #f8eec6 100%)";
+    document.querySelector("#app").style.backgroundImage = "linear-gradient(to top, #f8eec6 0%, #e2f4fa 100%)";
   } else if (weatherID >= 801 && weatherID <= 804) {
     // clouds
     document.querySelector("#current-weather-icon").innerHTML = `<i class="fas fa-cloud-sun fa-7x"></i>`;
     document.querySelector("#current-weather-icon").style.color = "#0d8eca";
     document.querySelector("#app").style.backgroundImage = "linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)";
   } 
+
+  let longitude = response.data.coords.lon;
+  let latitude = response.data.coords.lat;
+  //document.querySelector("#forecast-days").innerHTML = latitude;
+  //document.querySelector("#forecast-days").innerHTML = longitude;
+  getForecastDays(latitude, longitude);
+}
+
+function getForecastDays (latitude, longitude) {
+  let apiKey = "ad1c3c6d8734a6f724e8c027e1f76c71";
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showForecastDays);
+}
+
+function showForecastDays(response) {
+  document.querySelector("#forecast-days").innerHTML = null;
+  let forecast = null;
+
+  for (let index = 1; index < 6; index++) {
+    forecast = response.data.daily[index];
+    document.querySelector("#forecast-days").innerHTML += 
+  `<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div>
+        <h3 id="daily-forecast">
+          ${formatDays(forecast.dt * 1000)} <img 
+          src="https://openweathermap.org/img/wn/${forecast.weather[0].id}@2x.png"
+        />
+        </h3>
+    </div>
+    <div>
+        <strong class="max-temp-days">
+          ${Math.round(forecast.temp.max)}°
+        </strong> 
+          / ${Math.round(forecast.temp.min)}°  
+    </div>
+  </div>`
+}
 }
 
 function showForecastHours(response) {
@@ -103,31 +138,6 @@ function showForecastHours(response) {
 }
 }
 
-function showForecastDays(response) {
-  console.log(response);
-  document.querySelector("#forecast-days").innerHTML = null;
-  let forecast = null;
-
-  for (let index = 0; index < 5; index++) {
-    forecast = response.data.daily[index];
-    document.querySelector("#forecast-days").innerHTML += 
-  `<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-    <ul>
-      <li class="days">
-       ${formatDays(forecast.dt * 1000)} <img 
-        src="https://openweathermap.org/img/wn/${forecast.weather[0].id}@2x.png"/>
-      </li>
-      <li>
-        <strong class="max-temp-days">
-          ${Math.round(forecast.temp.max)}°
-        </strong> 
-          / ${Math.round(forecast.temp.min)}°  
-      </li>
-    </ul>
-  </div>`
-}
-}
-
 //
 
 function search(city) {
@@ -137,14 +147,11 @@ function search(city) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecastHours);
-
-  let cnt = 5;
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&cnt=${cnt}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showForecastDays);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
+  console.log(event);
   document.querySelector("#celsius-link").classList.add("active");
   document.querySelector("#fahrenheit-link").classList.remove("active");
   let city = document.querySelector("#search-city").value;
@@ -154,12 +161,12 @@ function handleSubmit(event) {
 //
 
 function showLocation(position) {
-let longitude = position.coords.longitude;
-let latitude = position.coords.latitude;
-let apiKey = "ad1c3c6d8734a6f724e8c027e1f76c71";
+  let longitude = position.coords.longitude;
+  let latitude = position.coords.latitude;
+  let apiKey = "ad1c3c6d8734a6f724e8c027e1f76c71";
 
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-axios.get(apiUrl).then(showWeather);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
 }
 
 function getCurrentPosition(event) {

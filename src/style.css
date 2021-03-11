@@ -97,6 +97,13 @@
   font-weight: 23px;
 }
 
+#daily-forecast {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: -3px;
+  margin-top: 5px;
+}
+
 #current-weather-icon {
   margin-top: 40px;
   text-align: center;

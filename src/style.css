@@ -142,7 +142,7 @@
     width: 40px;
   }
   
-  .forecast-temperature {
+  .forecast-hours-temperature {
     font-size: 12px;
     font-weight: normal;
     height: auto;
@@ -150,8 +150,10 @@
     white-space: nowrap;
   }
   .max-temp-hours,
-  .max-temp-days {
+  .max-temp-days,
+  .degrees {
     color: #0d8eca;
+    font-weight: bold;
   }
 
   #open-source-code {

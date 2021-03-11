@@ -73,7 +73,7 @@ function showWeather(response) {
     // clouds
     document.querySelector("#current-weather-icon").innerHTML = `<i class="fas fa-cloud-sun fa-7x"></i>`;
     document.querySelector("#current-weather-icon").style.color = "#0d8eca";
-    document.querySelector("#app").style.backgroundImage = "linear-gradient(45deg, #93a5cf 0%, #e4efe9 100%)";
+    document.querySelector("#app").style.backgroundImage = "linear-gradient(45deg, #e4efe9 0%, #93a5cf 100%)";
   } 
 
   let longitude = response.data.coords.lon;
@@ -104,11 +104,11 @@ function showForecastDays(response) {
         />
         </h3>
     </div>
-    <div>
+    <div class="forecast-days-temperature">
         <strong class="max-temp-days">
-          ${Math.round(forecast.temp.max)}°
-        </strong> 
-          / ${Math.round(forecast.temp.min)}°  
+          ${Math.round(forecast.temp.max)}
+        </strong><span class="degrees">°</span> 
+          / <span class="min-temp-days"> ${Math.round(forecast.temp.min)}</span>°  
     </div>
   </div>`
 }
@@ -128,11 +128,11 @@ function showForecastHours(response) {
     <img 
       src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
     />
-    <div class="forecast-temperature">
+    <div class="forecast-hours-temperature">
       <strong class="max-temp-hours">
-        ${Math.round(forecast.main.temp_max)}°
-      </strong> 
-        / ${Math.round(forecast.main.temp_min)}°
+        ${Math.round(forecast.main.temp_max)}
+      </strong><span class="degrees">°</span> 
+        / <span class="min-temp-hours">${Math.round(forecast.main.temp_min)}</span>°
     </div>
   </div>`
 }
@@ -161,11 +161,11 @@ function handleSubmit(event) {
 //
 
 function showLocation(position) {
-  let longitude = position.coords.longitude;
-  let latitude = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let lat = position.coords.latitude;
   let apiKey = "ad1c3c6d8734a6f724e8c027e1f76c71";
 
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
 }
 
@@ -189,6 +189,10 @@ function fahrenheitConvert(event) {
   document.querySelector("#celsius-link").classList.remove("active");
   document.querySelector("#fahrenheit-link").classList.add("active");
   document.querySelector("#temperature").innerHTML = Math.round((celsius * 9) / 5 + 32);
+  document.querySelector(".max-temp-hours").innerHTML = Math.round((celsius * 9) / 5 + 32);
+  document.querySelector(".min-temp-hours").innerHTML = Math.round((celsius * 9) / 5 + 32);
+  //document.querySelector(".max-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
+  //.querySelector(".min-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
 }
 
 function celsiusConvert(event) {
@@ -196,6 +200,10 @@ function celsiusConvert(event) {
   document.querySelector("#celsius-link").classList.add("active");
   document.querySelector("#fahrenheit-link").classList.remove("active");
   document.querySelector("#temperature").innerHTML = Math.round(celsius);
+  document.querySelector(".max-temp-hours").innerHTML = Math.round(celsius);
+  document.querySelector(".min-temp-hours").innerHTML = Math.round(celsius);
+  //document.querySelector(".max-temp-days").innerHTML = Math.round(celsius);
+  //document.querySelector(".min-temp-days").innerHTML = Math.round(celsius);
   }
 
 let celsius = null;

@@ -11,7 +11,7 @@ function formatHours (timestamp) {
 
 function formatDays (timestamp) {
   let now = new Date(timestamp);
-  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let day = days [now.getDay()];
   return `${day}`;
 }
@@ -21,8 +21,13 @@ function formatDays (timestamp) {
   let months = ["January", "February", "March", "April", "May", "June", "July", "Augustus", "September", "October", "November", "December"]
   let month = months[now.getMonth()];
   let year = now.getFullYear();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let day = days [now.getDay()];
+  let hours = (now.getHours()<10? `0` : ``) + now.getHours();
+  let minutes = (now.getMinutes()<10? `0` : ``) + now.getMinutes();
 
   document.querySelector("#month-year").innerHTML = `${date} ${month} ${year}`;
+  document.querySelector(".today").innerHTML = `${day} ${hours}:${minutes}`;
 
 //
 
@@ -106,7 +111,7 @@ function showForecastDays(response) {
         <strong class="max-temp-days">
           ${Math.round(forecast.temp.max)}
         </strong><span class="degrees">°</span> 
-          / <span class="min-temp-days"> ${Math.round(forecast.temp.min)}</span>°  
+          <span class="min-temp-days"> ${Math.round(forecast.temp.min)}</span>°  
     </div>
   </div>`
 }
@@ -130,7 +135,7 @@ function showForecastHours(response) {
       <strong class="max-temp-hours">
         ${Math.round(forecast.main.temp_max)}
       </strong><span class="degrees">°</span> 
-        / <span class="min-temp-hours">${Math.round(forecast.main.temp_min)}</span>°
+        <span class="min-temp-hours">${Math.round(forecast.main.temp_min)}</span>°
     </div>
   </div>`
 }
@@ -164,12 +169,13 @@ function showLocation(position) {
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showForecastHours);
 }
 
 function getCurrentPosition(event) {
   event.preventDefault();
-  document.querySelector("#celsius-link").classList.add("active");
-  document.querySelector("#fahrenheit-link").classList.remove("active");
   navigator.geolocation.getCurrentPosition(showLocation);
 }
 
@@ -188,10 +194,12 @@ function fahrenheitConvert(event) {
   document.querySelector("#celsius-link").classList.remove("active");
   document.querySelector("#fahrenheit-link").classList.add("active");
   document.querySelector("#temperature").innerHTML = Math.round((celsius * 9) / 5 + 32);
-  document.querySelector(".max-temp-hours").innerHTML = Math.round((celsius * 9) / 5 + 32);
-  document.querySelector(".min-temp-hours").innerHTML = Math.round((celsius * 9) / 5 + 32);
-  document.querySelector(".max-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
-  document.querySelector(".min-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
+
+  convertHourlyForecast("fahrenheit");
+  convertDailyForecast("fahrenheit");
+
+  document.querySelector("#celsius-link").addEventListener("click", celsiusConvert);
+  document.querySelector("#fahrenheit-link").removeEventListener("click", fahrenheitConvert);
 }
 
 function celsiusConvert(event) {
@@ -199,10 +207,72 @@ function celsiusConvert(event) {
   document.querySelector("#celsius-link").classList.add("active");
   document.querySelector("#fahrenheit-link").classList.remove("active");
   document.querySelector("#temperature").innerHTML = Math.round(celsius);
-  document.querySelector(".max-temp-hours").innerHTML = Math.round(celsius);
-  document.querySelector(".min-temp-hours").innerHTML = Math.round(celsius);
-  document.querySelector(".max-temp-days").innerHTML = Math.round(celsius);
-  document.querySelector(".min-temp-days").innerHTML = Math.round(celsius);
+
+  convertHourlyForecast("celsius");
+  convertDailyForecast("celsius");
+
+  document.querySelector("#celsius-link").removeEventListener("click", celsiusConvert);
+  document.querySelector("#fahrenheit-link").addEventListener("click", fahrenheitConvert);
+  }
+
+  function convertHourlyForecast(unit) {
+    if (unit === "celsius") {
+      document.querySelectorAll(".max-temp-hours").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Celsius
+        item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+      });
+      document.querySelectorAll(".min-temp-hours").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Celsius
+        item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+      });
+    } else {
+      document.querySelectorAll(".max-temp-hours").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Fahrenheit
+        item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+      });
+      document.querySelectorAll(".min-temp-hours").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Fahrenheit
+        item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+      });
+    }
+  }
+
+  function convertDailyForecast(unit) {
+    if (unit === "celsius") {
+      document.querySelectorAll(".max-temp-days").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Celsius
+        item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+      });
+      document.querySelectorAll(".min-temp-days").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Celsius
+        item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+      });
+    } else {
+      document.querySelectorAll(".max-temp-days").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Fahrenheit
+        item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+      });
+      document.querySelectorAll(".min-temp-days").forEach(function (item) {
+        // grabbing the current value to convert
+        let currentTemp = item.innerHTML;
+        // convert to Fahrenheit
+        item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+      });
+    }
   }
 
 let celsius = null;

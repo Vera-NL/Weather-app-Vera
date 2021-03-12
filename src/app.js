@@ -23,7 +23,7 @@ function formatDays (timestamp) {
   let year = now.getFullYear();
 
   document.querySelector("#month-year").innerHTML = `${date} ${month} ${year}`;
-  
+
 //
 
 function showWeather(response) {
@@ -76,10 +76,8 @@ function showWeather(response) {
     document.querySelector("#app").style.backgroundImage = "linear-gradient(45deg, #e4efe9 0%, #93a5cf 100%)";
   } 
 
-  let longitude = response.data.coords.lon;
-  let latitude = response.data.coords.lat;
-  //document.querySelector("#forecast-days").innerHTML = latitude;
-  //document.querySelector("#forecast-days").innerHTML = longitude;
+  let longitude = response.data.coord.lon;
+  let latitude = response.data.coord.lat;
   getForecastDays(latitude, longitude);
 }
 
@@ -100,7 +98,7 @@ function showForecastDays(response) {
     <div>
         <h3 id="daily-forecast">
           ${formatDays(forecast.dt * 1000)} <img 
-          src="https://openweathermap.org/img/wn/${forecast.weather[0].id}@2x.png"
+          src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
         />
         </h3>
     </div>
@@ -151,7 +149,6 @@ function search(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  console.log(event);
   document.querySelector("#celsius-link").classList.add("active");
   document.querySelector("#fahrenheit-link").classList.remove("active");
   let city = document.querySelector("#search-city").value;
@@ -171,7 +168,9 @@ function showLocation(position) {
 
 function getCurrentPosition(event) {
   event.preventDefault();
- navigator.geolocation.getCurrentPosition(showLocation);
+  document.querySelector("#celsius-link").classList.add("active");
+  document.querySelector("#fahrenheit-link").classList.remove("active");
+  navigator.geolocation.getCurrentPosition(showLocation);
 }
 
 let searchForm = document.querySelector("#search-form");
@@ -191,8 +190,8 @@ function fahrenheitConvert(event) {
   document.querySelector("#temperature").innerHTML = Math.round((celsius * 9) / 5 + 32);
   document.querySelector(".max-temp-hours").innerHTML = Math.round((celsius * 9) / 5 + 32);
   document.querySelector(".min-temp-hours").innerHTML = Math.round((celsius * 9) / 5 + 32);
-  //document.querySelector(".max-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
-  //.querySelector(".min-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
+  document.querySelector(".max-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
+  document.querySelector(".min-temp-days").innerHTML = Math.round((celsius * 9) / 5 + 32);
 }
 
 function celsiusConvert(event) {
@@ -202,8 +201,8 @@ function celsiusConvert(event) {
   document.querySelector("#temperature").innerHTML = Math.round(celsius);
   document.querySelector(".max-temp-hours").innerHTML = Math.round(celsius);
   document.querySelector(".min-temp-hours").innerHTML = Math.round(celsius);
-  //document.querySelector(".max-temp-days").innerHTML = Math.round(celsius);
-  //document.querySelector(".min-temp-days").innerHTML = Math.round(celsius);
+  document.querySelector(".max-temp-days").innerHTML = Math.round(celsius);
+  document.querySelector(".min-temp-days").innerHTML = Math.round(celsius);
   }
 
 let celsius = null;

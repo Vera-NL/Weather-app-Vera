@@ -72,12 +72,12 @@ function showWeather(response) {
     // clear
     document.querySelector("#current-weather-icon").innerHTML = `<i class="fas fa-sun fa-7x"></i>`;
     document.querySelector("#current-weather-icon").style.color = "#0d8eca";
-    document.querySelector("#app").style.backgroundImage = "linear-gradient(to top, #f8eec6 0%, #e2f4fa 100%)";
+    document.querySelector("#app").style.backgroundImage = "linear-gradient(45deg, #f8eec6 0%, #e2f4fa 100%)";
   } else if (weatherID >= 801 && weatherID <= 804) {
-    // clouds
+    // cloudss
     document.querySelector("#current-weather-icon").innerHTML = `<i class="fas fa-cloud-sun fa-7x"></i>`;
     document.querySelector("#current-weather-icon").style.color = "#0d8eca";
-    document.querySelector("#app").style.backgroundImage = "linear-gradient(45deg, #e4efe9 0%, #93a5cf 100%)";
+    document.querySelector("#app").style.backgroundImage = "linear-gradient(105deg, #e4efe9 0%, #93a5cf 100%)";
   } 
 
   let longitude = response.data.coord.lon;
@@ -97,13 +97,49 @@ function showForecastDays(response) {
 
   for (let index = 1; index < 6; index++) {
     forecast = response.data.daily[index];
+
+    let weatherID = forecast.weather[0].id;
+    let icon = "";
+    let iconColor = "";
+
+    if (weatherID >= 200 && weatherID < 300) {
+      // thunderstorms
+      icon = `<i class="fas fa-bolt fa-1x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 300 && weatherID < 500) {
+      // drizzle
+      icon = `<i class="fas fa-cloud-rain fa-1x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 500 && weatherID < 600) {
+      // rain
+      icon = `<i class="fas fa-cloud-showers-heavy fa-1x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 600 && weatherID < 700) {
+      // snow
+      icon = `<i class="fas fa-snowflake fa-1x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 700 && weatherID < 800) {
+      // 'atmosphere'
+      icon = `<i class="fas fa-smog fa-1x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID === 800) {
+      // clear
+      icon = `<i class="fas fa-sun fa-1x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 801 && weatherID <= 804) {
+      // clouds
+      icon = `<i class="fas fa-cloud-sun fa-1x"></i>`;
+      iconColor = "#0d8eca";
+    }
+
     document.querySelector("#forecast-days").innerHTML += 
   `<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <div>
         <h3 id="daily-forecast">
-          ${formatDays(forecast.dt * 1000)} <img 
-          src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
-        />
+          ${formatDays(forecast.dt * 1000)} 
+            <span id="forecast-days-icon" style="color:${iconColor}">
+              ${icon}
+            </span>
         </h3>
     </div>
     <div class="forecast-days-temperature">
@@ -122,53 +158,60 @@ function showForecastHours(response) {
 
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
-    document.querySelector("#forecast-hours").innerHTML += 
-  `<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+    let weatherID = forecast.weather[0].id;
+    let icon = "";
+    let iconColor = "";
+
+    if (weatherID >= 200 && weatherID < 300) {
+      // thunderstorms
+      icon = `<i class="fas fa-bolt fa-2x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 300 && weatherID < 500) {
+      // drizzle
+      icon = `<i class="fas fa-cloud-rain fa-2x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 500 && weatherID < 600) {
+      // rain
+      icon = `<i class="fas fa-cloud-showers-heavy fa-2x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 600 && weatherID < 700) {
+      // snow
+      icon = `<i class="fas fa-snowflake fa-2x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 700 && weatherID < 800) {
+      // 'atmosphere'
+      icon = `<i class="fas fa-smog fa-2x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID === 800) {
+      // clear
+      icon = `<i class="fas fa-sun fa-2x"></i>`;
+      iconColor = "#0d8eca";
+    } else if (weatherID >= 801 && weatherID <= 804) {
+      // clouds
+      icon = `<i class="fas fa-cloud-sun fa-2x"></i>`;
+      iconColor = "#0d8eca";
+    }
+
+    document.querySelector(
+      "#forecast-hours"
+    ).innerHTML += `<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
     <h3>
       ${formatHours(forecast.dt * 1000)}
     </h3>
-    <span id="forecast-hours-icon">
-    </span>
+    <div id="forecast-hours-icon" style="color:${iconColor}">
+      ${icon}
+    </div>
     <div class="forecast-hours-temperature">
       <strong class="max-temp-hours">
         ${Math.round(forecast.main.temp_max)}
       </strong><span class="degrees">°</span> 
-        <span class="min-temp-hours">${Math.round(forecast.main.temp_min)}</span>°
+        <span class="min-temp-hours">${Math.round(
+          forecast.main.temp_min
+        )}</span>°
     </div>
-  </div>`
+  </div>`;
   }
-
-  let weatherID = response.data.list[index].weather[0].icon;
-
-  if (weatherID >= 200 && weatherID < 300) {
-    // thunderstorms
-    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-bolt fa-7x"></i>`;
-    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
-  } else if (weatherID >= 300 && weatherID < 500) {
-    // drizzle
-    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-cloud-rain fa-7x"></i>`;
-    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
-  } else if (weatherID >= 500 && weatherID < 600) {
-    // rain
-    document.querySelector("#forecast-hours-iconn").innerHTML = `<i class="fas fa-cloud-showers-heavy fa-7x"></i>`;
-    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
-  } else if (weatherID >= 600 && weatherID < 700) {
-    // snow
-    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-snowflake fa-7x"></i>`;
-    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
-  } else if (weatherID >= 700 && weatherID < 800) {
-    // 'atmosphere'
-    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-smog fa-7x"></i>`;
-    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
-  } else if (weatherID === 800) {
-    // clear
-    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-sun fa-7x"></i>`;
-    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
-  } else if (weatherID >= 801 && weatherID <= 804) {
-    // clouds
-    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-cloud-sun fa-7x"></i>`;
-    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
-  } 
 }
 
 //
@@ -183,12 +226,13 @@ function search(city) {
 
   document.querySelector("#celsius-link").removeEventListener("click", celsiusConvert);
   document.querySelector("#fahrenheit-link").addEventListener("click", fahrenheitConvert);
+
+  document.querySelector("#celsius-link").classList.add("active");
+  document.querySelector("#fahrenheit-link").classList.remove("active");
 }
 
 function handleSubmit(event) {
   event.preventDefault();
-  document.querySelector("#celsius-link").classList.add("active");
-  document.querySelector("#fahrenheit-link").classList.remove("active");
   let city = document.querySelector("#search-city").value;
   search(city);
 }
@@ -205,6 +249,12 @@ function showLocation(position) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecastHours);
+
+  document.querySelector("#celsius-link").removeEventListener("click", celsiusConvert);
+  document.querySelector("#fahrenheit-link").addEventListener("click", fahrenheitConvert);
+
+  document.querySelector("#celsius-link").classList.add("active");
+  document.querySelector("#fahrenheit-link").classList.remove("active");
 }
 
 function getCurrentPosition(event) {

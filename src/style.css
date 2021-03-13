@@ -93,15 +93,10 @@
   font-weight: bold;
 }
 
-#forecast-days img {
-  font-weight: 25px;
-  height: 25px; 
-}
-
 #daily-forecast {
   font-size: 12px;
   font-weight: bold;
-  margin-bottom: -3px;
+  margin-bottom: 3px;
   margin-top: 5px;
 }
 
@@ -144,10 +139,8 @@
   
   #forecast-hours-icon {
     display: block;
-    height: 40px;
     margin: 0 auto;
-    margin-top: -7px;
-    width: 40px;
+    margin-top: 1px;
   }
   
   .forecast-hours-temperature {
@@ -155,7 +148,7 @@
     font-weight: normal;
     height: auto;
     line-height: 15px;
-    margin-top: -7px;
+    margin-top: 1px;
     white-space: nowrap;
   }
 

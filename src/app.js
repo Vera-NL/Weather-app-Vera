@@ -40,7 +40,6 @@ function showWeather(response) {
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
 
   let weatherID = response.data.weather[0].id;
-  document.querySelector("#current-weather-icon").innerHTML = weatherID;
   
   // https://openweathermap.org/weather-conditions
 
@@ -128,9 +127,8 @@ function showForecastHours(response) {
     <h3>
       ${formatHours(forecast.dt * 1000)}
     </h3>
-    <img 
-      src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
-    />
+    <span id="forecast-hours-icon">
+    </span>
     <div class="forecast-hours-temperature">
       <strong class="max-temp-hours">
         ${Math.round(forecast.main.temp_max)}
@@ -138,7 +136,39 @@ function showForecastHours(response) {
         <span class="min-temp-hours">${Math.round(forecast.main.temp_min)}</span>°
     </div>
   </div>`
-}
+  }
+
+  let weatherID = response.data.list[index].weather[0].icon;
+
+  if (weatherID >= 200 && weatherID < 300) {
+    // thunderstorms
+    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-bolt fa-7x"></i>`;
+    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
+  } else if (weatherID >= 300 && weatherID < 500) {
+    // drizzle
+    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-cloud-rain fa-7x"></i>`;
+    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
+  } else if (weatherID >= 500 && weatherID < 600) {
+    // rain
+    document.querySelector("#forecast-hours-iconn").innerHTML = `<i class="fas fa-cloud-showers-heavy fa-7x"></i>`;
+    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
+  } else if (weatherID >= 600 && weatherID < 700) {
+    // snow
+    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-snowflake fa-7x"></i>`;
+    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
+  } else if (weatherID >= 700 && weatherID < 800) {
+    // 'atmosphere'
+    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-smog fa-7x"></i>`;
+    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
+  } else if (weatherID === 800) {
+    // clear
+    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-sun fa-7x"></i>`;
+    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
+  } else if (weatherID >= 801 && weatherID <= 804) {
+    // clouds
+    document.querySelector("#forecast-hours-icon").innerHTML = `<i class="fas fa-cloud-sun fa-7x"></i>`;
+    document.querySelector("#forecast-hours-icon").style.color = "#0d8eca";
+  } 
 }
 
 //
@@ -150,6 +180,9 @@ function search(city) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showForecastHours);
+
+  document.querySelector("#celsius-link").removeEventListener("click", celsiusConvert);
+  document.querySelector("#fahrenheit-link").addEventListener("click", fahrenheitConvert);
 }
 
 function handleSubmit(event) {

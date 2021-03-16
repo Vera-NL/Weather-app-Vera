@@ -1,4 +1,8 @@
-  h1 {
+ body {
+   max-width: 800px;
+ }
+ 
+ h1 {
     color: #0d8eca;
   }
   
